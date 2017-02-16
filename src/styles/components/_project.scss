@@ -1,0 +1,89 @@
+.projects {
+  position: relative;
+  top: 5vh;
+  height: 70vh;
+  margin: 0 $outer-border;
+  overflow: hidden;
+
+  &__scroll {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+
+    &::after {
+      content: '';
+      flex: none;
+      width: em(450);
+      padding: em(20);
+    }
+  }
+}
+
+.project {
+  flex: none;
+  width: 45%;
+  max-width: em(650);
+  padding: em(20);
+
+  &__text {
+    padding: em(15) em(10) em(10);
+  }
+
+  &__image {
+    background: $indigo;
+    min-height: em(180);
+
+    img {
+      display: block;
+      max-width: 100%;
+      opacity: .5;
+    }
+  }
+
+  &__links {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    top: em(5);
+    float: right;
+  }
+
+  &__link {
+    display: inline-block;
+    color: $indigo;
+    text-decoration: none;
+    font-size: em(27);
+
+    svg {
+      width: em(15);
+      margin-right: em(7);
+
+      path {
+        fill: $indigo;
+      }
+    }
+  }
+
+  &__description {
+    // margin-bottom: em(8);
+  }
+
+  &__header {
+    @include ff-bold;
+    text-transform: uppercase;
+    font-size: em(24);
+    margin-bottom: em(6);
+  }
+
+  &__tech {
+    margin: 0;
+
+    span {
+      @include ff-bold;
+    }
+  }
+}

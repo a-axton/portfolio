@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="main.css" />
+  <title>Andy Axton | Portfolio</title>
+  <link rel="apple-touch-icon" sizes="180x180" href="images/favicons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" href="images/favicons/favicon-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="images/favicons/favicon-16x16.png" sizes="16x16">
+  <link rel="manifest" href="images/favicons/manifest.json">
+  <link rel="mask-icon" href="images/favicons/safari-pinned-tab.svg" color="#5bbad5">
+  <link rel="shortcut icon" href="images/favicons/favicon.ico">
+  <meta name="msapplication-config" content="images/favicons/browserconfig.xml">
+  <meta name="theme-color" content="#ffffff">
+</head>
+<body>
+<header class="header">
+  <a href="/" class="header__name" data-navigo>Andy Axton</a>
+  <div id="nav-toggle" class="nav-toggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+  <div class="nav">
+    <nav class="nav__items">
+      <ul>
+        <li class="nav__item"><a href="about" data-navigo>about</a></li>
+        <li class="nav__item"><a href="projects" data-navigo>projects</a></li>
+        <li class="nav__item nav__item--icon"><a href="#">{{> github-icon}}</a></li>
+        <li class="nav__item nav__item--icon"><a href="#">{{> twitter-icon}}</a></li>
+        <li class="nav__item nav__item--icon nav__item--mail"><a href="#">{{> mail-icon}}</a></li>
+
+      </ul>
+    </nav>
+  </div>
+</header>
+  <div id="section-home" class="section landing">
+    <div class="section__content">
+      
+      <section class="intro">
+        <div class="intro__text">
+          <h1 class="heading-large">I build neat stuff for the web</h1>
+          <p>I write code and design user interfaces for all types of projects</p>
+        </div>
+      </section>
+      <div class="section-link section-link--about">
+        <div class="section-link__mouse-box">
+          <a href="about" data-navigo>about me</a>
+        </div>
+      </div>
+      <div class="section-link section-link--projects">
+        <div class="section-link__mouse-box">
+          <a href="projects" data-navigo>projects</a>
+        </div>
+      </div>  
+    </div>
+  </div>
+
+  <section id="section-about" class="section">
+    <div class="section__content">
+      <section class="about layout">
+        <div class="about__photo col-auto">
+          <img src="images/photo.jpg" />
+        </div>
+        <div class="about__text col">
+          <h3 class="about__header">I’m a front-end web developer and UI/UX designer.</h3>
+          <p>I’m a self taught front-end web developer with a knack for creating interactive user experiences. I love design as much as I love coding. I help run a company in Sacramento, CA that helps startups build prototypes of their ideas.</p>
+          <p>I’m highly involved in my local development and startup community. I helped to found and co-organize a JavaScript meetup that has been running for 3 years. I volunteered at my city’s Code for America brigade for over 2 years.</p>
+        </div>
+      </section>
+      <div class="section-link section-link--projects">
+        <div class="section-link__mouse-box">
+          <a href="projects" data-navigo>projects</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="section-projects" class="section">
+    <div class="section__content">
+    <div id="projects-scroll" class="projects">
+      <div class="projects__scroll">
+        {{#each collections.projects}}
+          <div class="project">
+            <div class="project__image">
+              <img src="images/projects/{{ this.photo }}" alt="{{ this.name }}">
+            </div>
+            <div class="project__text">
+              <div class="project__links">
+                {{#if this.github}}
+                  <a class="project__link" target="_blank" href="{{ this.github }}">{{> github-icon }}</a>
+                {{/if}}
+                <a class="project__link" target="_blank" href="{{ this.demo }}">↗</a>
+              </div>
+              <h2 class="project__header">{{ this.name }}</h2>
+              <p class="project__description">{{ this.blurb }}</p>
+              <p class="project__tech"><span>Tech:</span> {{ this.tech }}</p>
+            </div>
+          </div>
+        {{/each}}  
+      </div>
+        
+    </div>
+    
+    </div>
+  </section>
+
+  <div id="watching-you">
+    <img src="https://media.giphy.com/media/anzLZHW9ImqI0/giphy.gif">
+    <p>Trying to look at my code!? Just kidding, it's actually on github. Take a look.</p>
+  </div>
+
+  <div id="background"></div>
+  <script type="text/javascript" src="bundle.js"></script>
+</body>
+</html>

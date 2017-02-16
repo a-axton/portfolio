@@ -1,0 +1,230 @@
+.header {
+  position: fixed;
+  top: $outer-border;
+  left: $outer-border;
+  right: $outer-border;
+  padding: em(44);
+  z-index: 900;
+
+  &__name {
+    @include ff-bold;
+    text-transform: uppercase;
+    font-size: em(22);
+    color: $indigo;
+    text-decoration: none;
+  }
+}
+
+.nav-toggle {
+  position: relative;
+  width: em(38);
+  height: em(20);
+  float: right;
+  cursor: pointer;
+  z-index: 1200;
+  @include transform(rotate(0deg));
+  @include transform-origin(center center);
+
+  @at-root .nav-open & {
+    @include animation(nav-toggle 150ms 220ms ease-out);
+    @include animation-fill-mode(forwards);
+    animation-direction: alternate;
+    
+    span {
+      background-color: white;
+      @include transform-origin(center center);
+      @include animation(middle-line 450ms cubic-bezier(0.675, 0.325, 0.120, 1.015));
+      @include animation-fill-mode(forwards);
+    }
+    span:first-child {
+      @include animation(top-line 450ms cubic-bezier(0.675, 0.325, 0.120, 1.015));
+      @include animation-fill-mode(forwards);
+    }
+    span:last-child {
+      @include animation(bottom-line 450ms cubic-bezier(0.675, 0.325, 0.120, 1.015));
+      @include animation-fill-mode(forwards);
+    }
+  }
+
+  &:hover {
+    span {
+      @include transform( translateZ(0));
+    }
+    span:first-child {
+      @include transform( translateY(-2px) translateZ(0));
+    }
+    span:last-child {
+      @include transform( translateY(2px) translateZ(0));
+    }
+  }
+
+  span {
+    @include transform(scaleX(1) translateZ(0));
+    @include transition(all 150ms ease-out);
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    width: em(38);
+    height: 2px;
+    background-color: $indigo;
+  }
+
+  span:nth-child(2) {
+    top: 8px;
+  }
+
+  span:last-child {
+    top: 16px;
+  }
+}
+
+.nav {
+  @include animation(none);
+  @include transform(scale(0));
+  @include transform-origin(center center);
+  @include animation-fill-mode(forwards);
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: $outer-border + em(19);
+  top: $outer-border + em(19);
+  padding-right: em(50);
+  width: em(72);
+  height: em(72);
+  text-align: center;
+  border-radius: 999px;
+  background-color: $indigo;
+  overflow: hidden;
+
+  @at-root .nav-open & {
+    @include animation(nav-width 400ms 240ms cubic-bezier(0.450, 0.585, 0.215, 1.025), nav-scale 230ms cubic-bezier(0.875, 0.175, 0.285, 1.005));
+    @include animation-fill-mode(forwards);
+
+    &__items {
+      @include animation(nav-items 580ms 225ms cubic-bezier(0.380, 0.350, 0.285, 1.005));
+      @include animation-fill-mode(forwards);
+
+      opacity: 1;
+    }
+  }
+
+  &__items {
+    @include animation(none);
+    @include transform(translateX(57px));
+    @include transition(opacity 200ms 200ms);
+    width: $nav-width;
+    flex: none;
+    opacity: 0;
+  }
+
+  &__item {
+    display: inline-block;
+    margin: 0 em(8);
+
+    &:hover a {
+      color: #8BD9FB;
+    }
+
+    a {
+      @include ff-bold;
+      @include transition(all 150ms ease-out);
+      font-weight: 400;
+      color: white;
+      text-decoration: none;
+      text-transform: uppercase;
+      line-height: em(19);
+      font-size: em(18);
+    }
+  }
+
+  &__item--icon {
+    position: relative;
+    width: em(19);
+
+    &:hover svg path {
+      fill: #8BD9FB;
+    }
+
+    a {
+      position: absolute;
+      top: em(-20.5);
+      left: 0;
+    }
+
+    svg {
+      width: em(20);
+
+      path {
+        @include transition(all 150ms ease-out);
+        fill: white;
+      }
+    }
+  }
+
+  &__item--mail {
+    a {
+      top: em(-16);
+    }
+
+    svg {
+      width: em(25);
+    }
+  }
+}
+
+@include keyframes (nav-width) {
+  100% {
+    width: $nav-width;
+  }
+}
+
+@include keyframes (nav-scale) {
+  100% {
+    @include transform(scale(1));
+  }
+}
+
+
+@include keyframes (nav-items) {
+  100% {
+    @include transform(translateX(0px));
+  }
+}
+
+@include keyframes (top-line) {
+  0% {
+    @include transform(translateY(-2px) translateZ(0));
+  } 20% {
+    @include transform(translateY(8px) translateZ(0));
+  } 100% {
+    @include transform(translateY(8px) rotate(45deg) translateZ(0));
+  }
+}
+
+@include keyframes (middle-line) {
+  0% {
+    opacity: 1;
+  } 20% {
+    opacity: 1;
+  } 100% {
+    opacity: 0;
+  }
+}
+
+@include keyframes (bottom-line) {
+  0% {
+    @include transform(translateY(2px) translateZ(0));
+  } 20% {
+    @include transform(translateY(-8px) translateZ(0));
+  } 100% {
+    @include transform(translateY(-8px) rotate(-45deg) translateZ(0));
+  }
+}
+
+@include keyframes (nav-toggle) {
+  100% {
+    @include transform(rotate(-90deg));
+  }
+}
