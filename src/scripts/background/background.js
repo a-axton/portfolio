@@ -9,13 +9,6 @@ let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
 let pauseMouseMovement = false;
 
-// var myAudio = document.createElement('audio');
-// myAudio.setAttribute('src','sounds/Ambient Drone 2.mp3');
-// myAudio.playbackRate = 0.5;
-// myAudio.volume = 0.15;
-// document.body.appendChild(myAudio);
-// myAudio.play();
-
 let scene = new THREE.Scene();
 let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 1, 3000);
 let renderer = new THREE.WebGLRenderer({alpha: true});
@@ -37,9 +30,9 @@ scene.add(light);
 // scene.add(axis);
 
 shapes.getShapes().forEach((shape, i) => {
-  shape.scale.x = 0;
-  shape.scale.y = 0;
-  shape.scale.z = 0;
+  shape.scale.x = .01;
+  shape.scale.y = .01;
+  shape.scale.z = .01;
   let coords = {
     scale: 0
   }
@@ -148,7 +141,6 @@ const animate = (time) => {
 
   shapes.getShapes().forEach((shape, i) => {
     shape.rotation.y += 0.003;
-    shape.position.y += 0.01;
   });
 
   if (!pauseMouseMovement) {

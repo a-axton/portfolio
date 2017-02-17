@@ -1,0 +1,49 @@
+#background {
+  position: absolute;
+  z-index: 100;
+  pointer-events: none;
+}
+
+#watching-you {
+  position: absolute;
+  z-index: 9999;
+  top: em(40);
+  right: em(40);
+  width: em(400);
+  background: $indigo;
+  padding: em(20);
+  color: white;
+  display: none;
+
+  &.open {
+    display: block;
+  }
+
+  p {
+    margin-top: em(8);
+    margin-bottom: 0;
+  }
+
+  a {
+    color: white;
+  }
+
+  img {
+    max-width: 100%;
+  }
+}
+
+.intro {
+  text-align: center;
+
+  &__text {
+    max-width: em(650);
+
+    p {
+      max-width: em(450);
+      margin: em(14) auto em(30);
+      font-size: em(19);
+      line-height: em(32);
+    }
+  }
+}

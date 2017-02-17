@@ -1,6 +1,6 @@
 .projects {
   position: relative;
-  top: 5vh;
+  top: 3.62vh;
   height: 70vh;
   margin: 0 $outer-border;
   overflow: hidden;
@@ -26,7 +26,14 @@
   flex: none;
   width: 45%;
   max-width: em(650);
-  padding: em(20);
+  padding: 0 em(20);
+  margin-bottom: em(30);
+
+  // &:hover {
+  //   .project__image img {
+  //     opacity: 1;
+  //   }
+  // }
 
   &__text {
     padding: em(15) em(10) em(10);
@@ -37,6 +44,8 @@
     min-height: em(180);
 
     img {
+      @include transition(opacity 300ms ease-out);
+      @include backface-visibility(hidden);
       display: block;
       max-width: 100%;
       opacity: .5;

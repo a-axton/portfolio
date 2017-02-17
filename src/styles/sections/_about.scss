@@ -5,6 +5,8 @@
 
   &__photo {
     width: 40%;
+    margin-top: modular(2) * -1;
+
     img {
       max-width: 100%;
       border-radius: 50%;
@@ -14,7 +16,7 @@
   &__header {
     @include ff-bold;
     font-size: em(34);
-    line-height: em(22);
-    margin-bottom: modular(1);
+    line-height: em(23);
+    margin-bottom: em(11);
   }
 }

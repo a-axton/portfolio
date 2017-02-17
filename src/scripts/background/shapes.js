@@ -97,15 +97,15 @@ export default class Shapes {
   }
 
   getNoise () {
-    var noiseSize = 600;
+    var noiseSize = 800;
     var size = noiseSize * noiseSize;
     var data = new Uint8Array( 4 * size );
     for ( var i = 0; i < size; i ++ ) {
       data[ i ] = Math.random() * 150 | 0;
     }
     var dt = new THREE.DataTexture( data, noiseSize, noiseSize, THREE.LuminanceFormat );
-    dt.wrapS = THREE.RepeatWrapping;
-    dt.wrapT = THREE.RepeatWrapping;
+    dt.wrapS = THREE.ClampToEdgeWrapping;
+    dt.wrapT = THREE.ClampToEdgeWrapping;
     dt.needsUpdate = true;
     return dt;
   }
@@ -117,13 +117,12 @@ export default class Shapes {
       let shapeMaterial = new THREE.MeshPhongMaterial({
         color: 'tomato',
         vertexColors: THREE.FaceColors,
-        // transparent: true,
         alphaMap: this.getNoise(),
         fog: true
       });
       let shape = new THREE.Mesh(shapeGeometry, shapeMaterial);
-      let rangeX = window.innerWidth/2;
-      let rangeY = window.innerHeight/2;
+      let rangeX = window.innerWidth / 2;
+      let rangeY = window.innerHeight / 2;
 
       // set colors of faces manually
       shape.geometry.faces[0].color = new THREE.Color(1, 1, 1);
@@ -143,9 +142,6 @@ export default class Shapes {
       shape.position.x = rangeX * settings.x;
       shape.position.y = rangeY * settings.y;
       shape.position.z = settings.z;
-      // shape.position.x = randomRange(-rangeX, rangeX);
-      // shape.position.y = randomRange(-rangeY, rangeY);
-      // shape.position.z = randomRange(-400, 400);
 
       return shape;
     });

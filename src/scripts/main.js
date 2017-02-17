@@ -19,14 +19,12 @@ document.getElementById('nav-toggle').addEventListener('click', () => {
     document.body.classList.add('nav-close');
     document.body.classList.remove('nav-open');
   } else {
-    document.body.classList.add('nav-open');
     document.body.classList.remove('nav-close');
+    document.body.classList.add('nav-open');
   }
 });
 
-ps.initialize(document.getElementById('projects-scroll'), {
-});
-// router.navigate('');
+ps.initialize(document.getElementById('projects-scroll'), {});
 
 router
   .on('/', () => {
@@ -43,7 +41,6 @@ router
     background.pauseMouseMovement();
     pages.animate('projects');
     pages.setCurrentRoute();
-    // Ps.update(document.getElementById('projects'));
   })
   .resolve();
 

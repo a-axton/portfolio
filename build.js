@@ -13,11 +13,9 @@ var browserSync = require('metalsmith-browser-sync');
 var htmlMinifier = require('metalsmith-html-minifier');
 var imagemin = require('metalsmith-imagemin');
 var sitemap = require('metalsmith-mapsite');
-// var watch = require('metalsmith-watch');
-// var bs = require('browser-sync').create();
+var cleanCSS = require('metalsmith-clean-css');
 
-
-Metalsmith(__dirname)
+const ms = Metalsmith(__dirname)
   .use(ignore([
     'scripts/**/*.js'
   ]))
@@ -37,14 +35,10 @@ Metalsmith(__dirname)
       sortBy: 'order'
     }
   }))
-  .use(permalinks({
-    pattern: '/:title'
-  }))
   .use(sass({
     outputStyle: 'compressed',
     includePaths: require('node-neat').includePaths
   }))
-  .use(sitemap('http://www.website.com'))
   .use(imagemin({
     optimizationLevel: 3,
     progressive: true,
@@ -59,7 +53,19 @@ Metalsmith(__dirname)
   .use(moveUp([
     'content/*',
     'styles/*'
-  ]))
+  ]));
+  
+
+if (process.env.NODE_ENV === 'production') {
+  ms.use(cleanCSS({
+    files: '**/*.css',
+    cleanCSS: {
+      rebase: true
+    }
+  }));
+}
+
+ms
   .destination('./build')
   .build(function(err) {
     console.log(err)

@@ -2,7 +2,6 @@ import background from '../background/background';
 const setCurrentRoute = () => {
   currentRoute = window.location.hash;
   currentRoute = currentRoute === '' ? '/' : currentRoute;
-  console.log(currentRoute)
 }
 let currentRoute = window.location.hash;
 setCurrentRoute();

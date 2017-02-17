@@ -1,10 +1,10 @@
 @mixin ff-bold {
-  font-family: 'Gotham HTF Medium';
-  font-weight: 600;
+  font-family: 'Gotham HTF Medium', sans-serif;
+  font-weight: 400;
 }
 
 .heading-large {
-  font-family: 'Gotham HTF';
+  font-family: 'Gotham HTF', sans-serif;
   font-weight: 700;
   font-size: em(60);
   text-transform: uppercase;
